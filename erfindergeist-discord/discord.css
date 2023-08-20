@@ -8,7 +8,7 @@
 }
 
 .egj-discord-iframe-container {
-   display: none;
+   display: none;<
    position: fixed;
    right: 0px;
    top: 300px;

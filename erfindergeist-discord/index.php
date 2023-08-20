@@ -21,8 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 include 'styles.php';
 include 'apis.php';
 
-
-
 /** Step 3. */
 function erfindergeist_discord_plugin_options() {
 
