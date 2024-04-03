@@ -4,10 +4,10 @@
  * Description: Discord Button for Erfindergeist Jülich e.V.
  * Author: Lars 'vreezy' Eschweiler
  * Author URI: https://www.vreezy.de
- * Version: 1.0.0
+ * Version: 1.2.0
  * Text Domain: erfindergeist
  * Domain Path: /languages
- * Tested up to: 6.0
+ * Tested up to: 6.5
  *
  *
  * @package Erfindergeist-Discord
