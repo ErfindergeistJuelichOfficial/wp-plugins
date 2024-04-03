@@ -36,7 +36,7 @@ function gcalendar($request)
    
   $content = file_get_contents($url);
  
-  $response = new WP_REST_Response(json_decode($content, true)); 
+  $response = new WP_REST_Response(json_decode($content, true));
   $response->set_status(200);
 
   return $response;
