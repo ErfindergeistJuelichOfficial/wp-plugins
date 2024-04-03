@@ -1,6 +1,6 @@
 (function( gCalendar, $, undefined ) {
 
-var days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+const days = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
 
 function getData(renderType) {
   
@@ -16,7 +16,7 @@ function getData(renderType) {
          } 
       })
       .fail(function( jqxhr, textStatus, error ) {
-         var err = textStatus + ", " + error;
+         const err = textStatus + ", " + error;
          console.log( "Request Failed: " + err );
          renderError(renderType);
       });
@@ -24,7 +24,7 @@ function getData(renderType) {
 }
 
 function renderError(renderType) {
-   var html = `
+   const html = `
       <div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">
          Error Loading data.
       </div>
@@ -33,26 +33,26 @@ function renderError(renderType) {
 }
 
 function renderShort(data) {
-   if(data && data.items && Array.isArray(data.items) && data.items.length > 0) {
+   if(data?.items && Array.isArray(data.items) && data.items?.length > 0) {
       
-      var html = `<div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">`;
-      for(i = 0; i < data.items.length; i++) {
+      let html = `<div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">`;
+      for(let i = 0; i < data.items.length; i++) {
          
          const ele = data.items[i];
 
-         var startDate = "";
-         var endDate = "";
-         var startTime  = "";
-         var endTime = "";
+         let startDate = "";
+         let endDate = "";
+         let startTime  = "";
+         let endTime = "";
 
          if(ele?.start?.dateTime && ele?.end.dateTime) {
             startDate = new Date(ele.start.dateTime).toLocaleDateString();
             endDate = new Date(ele.end.dateTime).toLocaleDateString();
-            var startTime = new Date(ele.start.dateTime).toLocaleTimeString().slice(0, -3);
-            var endTime = new Date(ele.end.dateTime).toLocaleTimeString().slice(0, -3);
+            startTime = new Date(ele.start.dateTime).toLocaleTimeString().slice(0, -3);
+            endTime = new Date(ele.end.dateTime).toLocaleTimeString().slice(0, -3);
          }
      
-         var dateFormated = "";
+         let dateFormated = "";
 
          if(startDate === endDate) {
             dateFormated = `[${days[new Date(ele.start.dateTime).getDay()]}, ${startDate}, ${startTime} - ${endTime}]`;
@@ -76,10 +76,10 @@ function renderShort(data) {
 }
 
 function renderNormal(data) {
-   if(data && data.items && Array.isArray(data.items) && data.items.length > 0) {
+   if(data?.items && Array.isArray(data.items) && data.items?.length > 0) {
 
-      var html = `<div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">`; 
-      for(i = 0; i < data.items.length; i++) {
+      let html = `<div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">`; 
+      for(let i = 0; i < data.items.length; i++) {
 
          const ele = data.items[i];
  
@@ -111,7 +111,6 @@ gCalendar.init = function() {
 jQuery( document ).ready(function() {
    gCalendar.init();
 });
-
 
 // created: "2022-03-17T11:43:50.000Z"
 // creator:
