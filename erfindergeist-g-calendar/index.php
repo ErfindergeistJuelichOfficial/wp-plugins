@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Erfindergeist
- * Description: Google Calender WordPRess Plugin for Erfindergeist Jülich e.V.
- * Author: Lars vreezy Eschweiler
+ * Plugin Name: Erfindergeist Google Calendar
+ * Description: Google Calender WordPress Plugin for Erfindergeist Jülich e.V.
+ * Author: Lars 'vreezy' Eschweiler
  * Author URI: https://www.vreezy.de
  * Version: 1.2.0
  * Text Domain: erfindergeist
