@@ -13,6 +13,9 @@ function getData(renderType) {
             case 'gcalendarListShort':
                renderShort(json);
                break;
+            case 'SVG':
+                renderSVG(json);
+                break;
          } 
       })
       .fail(function( jqxhr, textStatus, error ) {
@@ -30,6 +33,13 @@ function renderError(renderType) {
       </div>
    `
    $(`#${renderType}`).html(html);
+}
+
+function renderSVG(data) {
+  let html = `<div class="wp-block-coblocks-column__inner has-no-padding has-no-margin">`;
+
+  html += `</div>`;
+  $('#gcalendarSVG').html(html);
 }
 
 function renderShort(data) {
@@ -104,6 +114,10 @@ gCalendar.init = function() {
    if(document.getElementById('gcalendarListShort')) {
       getData('gcalendarListShort');
    }
+
+   if(document.getElementById('gcalendarSVG')) {
+    getData('SVG');
+  }
 }
 
 }( window.gCalendar = window.gCalendar || {}, jQuery ));
