@@ -1,0 +1,11 @@
+:root {
+--bs-primary: var(--wp--preset--color--primary);
+--bs-secondary: var(--wp--preset--color--secondary);
+--bs-primary-rgb: 21, 153, 137;
+--bs-secondary-rgb: 249, 179, 56;
+
+}
+
+/* 
+--wp--preset--color--primary: rgb(21, 153, 137);
+--wp--preset--color--secondary: rgb(249, 179, 56); */
