@@ -16,6 +16,24 @@
   border-left-color: var(--wp--preset--color--secondary);
 }
 
+.bd-container {
+  padding: 1.25rem;
+  border: 1px solid #e9ecef;
+  border-left-width: .5rem;
+  border-radius: .25rem;
+  border-left-color: var(--wp--preset--color--primary);
+  margin-top: 0.8rem;
+}
+
+.bd-container-even {
+  padding: 1.25rem;
+  border: 1px solid #aaa;
+  border-left-width: .5rem;
+  border-radius: .25rem;
+  border-left-color: var(--wp--preset--color--primary);
+  margin-top: 0.8rem;
+}
+
 /* 
 --wp--preset--color--primary: rgb(21, 153, 137);
 --wp--preset--color--secondary: rgb(249, 179, 56); */
