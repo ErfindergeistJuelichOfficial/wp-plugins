@@ -12,6 +12,15 @@
     return event.toLocaleDateString("de-DE", options);
   }
 
+  function getGermanDateDayString(date) {
+    const event = new Date(date);
+    const options = {
+      day: "2-digit",
+    };
+
+    return event.toLocaleDateString("de-DE", options);
+  }
+
   function getGermanTimeString(date) {
     const event = new Date(date);
 
@@ -61,27 +70,38 @@
   function transform(data) {
     const newItems = data.items.map((item) => {
       const patern = /#[a-zA-Z0-9äüö]*/g;
-      const tags = item.description.match(patern);
+      const tags = item.description.match(patern) ?? [];
+
+      let filteredDescription = item.description;
+      tags.forEach((tag) => {
+        filteredDescription = filteredDescription.replace(tag, "");
+      });
+
+      let startDate =  item.start?.dateTime
+      ? getGermanDateString(item.start.dateTime)
+      : "";
+      let endDate = item.end?.dateTime
+      ? getGermanDateString(item.end.dateTime)
+      : "";
 
       return {
         summary: item.summary ?? "",
-        description: item.description ?? "",
+        description: filteredDescription ?? "",
         location: item.location ?? "",
-        startDate: item.start?.dateTime
-          ? getGermanDateString(item.start.dateTime)
-          : "",
+        startDate,
+        startDateDay: item.start?.dateTime ? getGermanDateDayString(item.start.dateTime) : "",
+        endDateDay: item.end?.dateTime ? getGermanDateDayString(item.end.dateTime) : "",
         startTime: item.start?.dateTime
           ? getGermanTimeString(item.start.dateTime)
           : "",
-        endDate: item.end?.dateTime
-          ? getGermanDateString(item.end.dateTime)
-          : "",
+        endDate,
         endTime: item.end?.dateTime
           ? getGermanTimeString(item.end.dateTime)
           : "",
         weekDayShort: item.start.dateTime
           ? getGermanWeekDayShortString(item.start.dateTime)
           : "",
+        sameDay: startDate === endDate,
         tags:
           tags && Array.isArray(tags) && tags.length > 0
             ? tags.map((tag) => tag.substring(1))
@@ -142,11 +162,13 @@
   }
 
   function renderNormal(data) {
-    const calenderTemplate = `
-      <div class="wp-block-coblocks-column__inner has-no-padding has-no-margin container">
+    let calenderTemplate = "";
+
+    const fallbackCalenderTemplate = `
+      <div class="container p-0 text-dark">
       {{#each items}}
         <div class="row">
-          <div class="col">{{weekDayShort}}</div>
+          <div class="col-1" style="font-size: 3rem">{{weekDayShort}}</div>
           <div class="col">{{summary}}, {{description}}, {{location}}{{startDate}}, {{startTime}}, 
            {{endDate}}, {{endTime}}, {{weekDayShort}}
 
@@ -165,6 +187,12 @@
     // #offeneWerkstatt
     // #repaircafe
 
+    try {
+      calenderTemplate = document.getElementById("gcalendarTemplate").innerHTML;
+    } catch (e) {
+      calenderTemplate = fallbackCalenderTemplate;
+    }
+
     const template = Handlebars.compile(calenderTemplate);
 
     $("#gcalendarList").html(template(transform(data)));
@@ -182,6 +210,28 @@
 })((window.gCalendar = window.gCalendar || {}), jQuery);
 
 jQuery(document).ready(function () {
+  Handlebars.registerHelper("include", function(arr, key) {
+    if(arr && Array.isArray(arr)) {
+      return arr.includes(key);
+    }        
+    return false;
+  });
+
+  Handlebars.registerHelper("filter", function(arr, key) {
+    if(arr && Array.isArray(arr)) {
+      return arr.filter(dataItem => dataItem?.tags.includes(key))
+    }        
+
+    return arr;
+  });
+
+  Handlebars.registerHelper("isOdd", function(num) {
+    return num % 2;
+  });
+
+  Handlebars.registerHelper("isEven", function(num) {
+    return !(num % 2);
+  });
   gCalendar.init();
 });
 
