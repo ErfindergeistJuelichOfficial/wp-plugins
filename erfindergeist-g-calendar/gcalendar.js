@@ -196,6 +196,15 @@
     const template = Handlebars.compile(calenderTemplate);
 
     $("#gcalendarList").html(template(transform(data)));
+
+    
+    jQuery("#gcalendarprintButton").click(function() {
+      console.log("clicked")
+      let w=window.open();
+      w.document.write(jQuery("#gcalendarList").html());
+      // w.print();
+      // w.close();
+    })
   }
 
   gCalendar.init = function () {
@@ -207,6 +216,7 @@
       getData("gcalendarListShort");
     }
   };
+
 })((window.gCalendar = window.gCalendar || {}), jQuery);
 
 jQuery(document).ready(function () {
@@ -232,8 +242,11 @@ jQuery(document).ready(function () {
   Handlebars.registerHelper("isEven", function(num) {
     return !(num % 2);
   });
+
   gCalendar.init();
+
 });
+
 
 // created: "2022-03-17T11:43:50.000Z"
 // creator:

@@ -34,6 +34,36 @@
   margin-top: 0.8rem;
 }
 
-/* 
---wp--preset--color--primary: rgb(21, 153, 137);
---wp--preset--color--secondary: rgb(249, 179, 56); */
+
+@media print {
+  :root {
+    font-size: 12pt;
+  }
+
+  h1, h2, h3, h4, h5 {
+    padding: 0;
+  }
+
+  ul {
+    margin: 0;
+  }
+
+  .no-print {
+    display: none;
+  }
+
+  .only-Print {
+    display: block;
+  }
+  
+  .visible-on-print {
+    display: block;
+  }
+}
+
+.no-print {
+  display: block;
+}
+
+
+
