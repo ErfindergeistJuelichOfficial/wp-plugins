@@ -62,6 +62,14 @@
     visibility: hidden;
   }
 
+  #site-header {
+    display: none;
+  }
+
+  .site-header {
+    display: none;
+  }
+
   h1, h2, h3, h4, h5 {
     padding: 0;
   }

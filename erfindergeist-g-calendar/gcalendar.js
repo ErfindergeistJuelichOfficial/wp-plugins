@@ -40,7 +40,7 @@
   }
 
   function getData(renderType) {
-    $.getJSON("/wp-json/erfindergeist/v1/gcalendar")
+    $.getJSON("https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v1/gcalendar")
       .done(function (json) {
         switch (renderType) {
           case "gcalendarList":
@@ -201,7 +201,7 @@
     jQuery("#gcalendarPrintButton").click(function(event) {
       event.preventDefault();
       console.log("gcalender print");
-      jQuery(".visible-on-print").offset({ left: 0, top: 0 })
+      // jQuery(".visible-on-print").offset({ left: 0, top: 0 })
       window.print();
     })
   }
@@ -240,6 +240,10 @@ jQuery(document).ready(function () {
 
   Handlebars.registerHelper("isEven", function(num) {
     return !(num % 2);
+  });
+
+  Handlebars.registerHelper("first", function(arr, num) {
+    return arr.slice(0, num);
   });
 
   gCalendar.init();
