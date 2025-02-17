@@ -198,12 +198,11 @@
     $("#gcalendarList").html(template(transform(data)));
 
     
-    jQuery("#gcalendarprintButton").click(function() {
-      console.log("clicked")
-      let w=window.open();
-      w.document.write(jQuery("#gcalendarList").html());
-      // w.print();
-      // w.close();
+    jQuery("#gcalendarPrintButton").click(function(event) {
+      event.preventDefault();
+      console.log("gcalender print");
+      jQuery(".visible-on-print").offset({ left: 0, top: 0 })
+      window.print();
     })
   }
 

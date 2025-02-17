@@ -34,10 +34,32 @@
   margin-top: 0.8rem;
 }
 
+.bd-container-compact {
+  padding: 0.2rem;
+  border: 1px solid #aaa;
+  border-left-width: .5rem;
+  border-radius: .25rem;
+  border-left-color: var(--wp--preset--color--primary);
+  margin-top: 0.2rem;
+}
+
 
 @media print {
+
   :root {
-    font-size: 12pt;
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    color-scheme: only light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    margin: 0;
+    overflow-wrap: break-word;
+    visibility: hidden;
   }
 
   h1, h2, h3, h4, h5 {
@@ -58,6 +80,7 @@
   
   .visible-on-print {
     display: block;
+    visibility: visible;
   }
 }
 

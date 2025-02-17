@@ -1,5 +1,5 @@
 <script id="gcalendarTemplate" type="text/x-handlebars-template">
-  <div class="container-fluid text-dark">
+  <div class="container-fluid text-dark visible-on-print">
     {{#each items}}
       
       {{#if (isOdd @index)}} 
@@ -9,10 +9,13 @@
         <div class="row" > 
       {{/if}}
         {{#if sameDay}}
-          <div class="col-2">
+        <div class="col">
+          {{summary}}
+        </div>
+          <div class="col">
             📅 {{startDate}}
           </div>
-          <div class="col-2">
+          <div class="col">
             🕑 {{startTime}} - {{endTime}}
           </div>
         {{/if}}
@@ -33,7 +36,7 @@
   </div>
 </script>
 
-<button id="gcalendarprintButton">print </button>
+<button id="gcalendarPrintButton">Drucken </button>
 
 <div
   style="margin-left: auto; margin-right: auto; max-width: 1312px; width: 90vw"

@@ -1,28 +1,24 @@
 <script id="gcalendarTemplate" type="text/x-handlebars-template">
-  <div class="container-fluid text-dark">
+  
     {{#each (filter items "Repaircafe")}}
-      
+    <div class="container-fluid text-dark bd-container-compact">
       {{#if (isOdd @index)}} 
-        <div class="row" style="background-color: #ddd;"> 
+        <div class="row"> 
       {{/if}}
       {{#if (isEven @index)}} 
         <div class="row" > 
       {{/if}}
         {{#if sameDay}}
-          <div class="col-2">
+          <div class="col-md-3">
             📅 {{startDate}}
           </div>
-          <div class="col-2">
+          <div class="col-md-3">
             🕑 {{startTime}} - {{endTime}}
           </div>
         {{/if}}
         {{#if location}}
           <div class="col">
-            📍 {{location}}
-            <a href='https://maps.google.com/?q={{location}}' target='_blank'>google</a> 
-            <a href='https://maps.apple.com/?q={{location}}' target='_blank'>apple</a> 
-            <a href='https://bing.com/maps/default.aspx?where1={{location}}' target='_blank'>bing</a> 
-            <a href='https://waze.com/ul?q={{location}}' target='_blank'>waze</a>
+            📍  {{#if (include tags "Stadtbücherei")}} Stadtbücherei {{/if}}  {{#if (include tags "Awo")}} Awo {{/if}}
           </div>
         {{/if}}
         
@@ -32,8 +28,9 @@
           {{description}}
         </div>
       </div> -->
+    </div>
     {{/each}}
-  </div>
+
 </script>
 
 
