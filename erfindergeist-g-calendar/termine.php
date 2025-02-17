@@ -26,40 +26,40 @@
         }
       ?>
     
-    <div
-      style="margin-left: auto; margin-right: auto"
-      id="gcalendarList"
-    >
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line end"></div>
-      <hr />
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line end"></div>
-      <hr />
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line end"></div>
-      <hr />
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line end"></div>
-      <hr />
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line"></div>
-      <div class="shimmerBG content-line end"></div>
-    </div>
+      <div
+        style="margin-left: auto; margin-right: auto"
+        id="gcalendarList"
+      >
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line end"></div>
+        <hr />
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line end"></div>
+        <hr />
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line end"></div>
+        <hr />
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line end"></div>
+        <hr />
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line"></div>
+        <div class="shimmerBG content-line end"></div>
+      </div>
 
-    <div class="container m-2 no-print" style="z-index: 100">
-      <button id="gcalendarPrintButton"type="button" class="btn btn-primary">Drucken</button>
-      <button onclick="location.href='./termine.php';" type="button" class="btn btn-primary">Alle Termine</button>
-      <button onclick="location.href='./termine.php?page=staender';" type="button" class="btn btn-primary">Ständer Termine (nächste drei)</button>
-    </div>
-  </main>
+      <div class="container m-2 no-print" style="z-index: 100">
+        <button id="gcalendarPrintButton"type="button" class="btn btn-primary">Drucken</button>
+        <button onclick="location.href='./termine.php';" type="button" class="btn btn-primary">Alle Termine</button>
+        <button onclick="location.href='./termine.php?page=staender';" type="button" class="btn btn-primary">Ständer Termine (nächste drei)</button>
+      </div>
+    </main>
     
-    <script src="https://spielwiese.erfindergeist.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
-    <script src="https://spielwiese.erfindergeist.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+    <script src="https://erfindergeist.org/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+    <script src="https://erfindergeist.org/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
     <script src="./handlebars.js?ver=4.7.8" id="handlebars-js"></script>
     <script src="./gcalendar.js?ver=1.5"></script>
   </body>

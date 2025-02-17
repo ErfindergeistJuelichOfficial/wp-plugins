@@ -40,7 +40,7 @@
   }
 
   function getData(renderType) {
-    $.getJSON("https://spielwiese.erfindergeist.org/wp-json/erfindergeist/v1/gcalendar")
+    $.getJSON("https://erfindergeist.org/wp-json/erfindergeist/v1/gcalendar")
       .done(function (json) {
         switch (renderType) {
           case "gcalendarList":
@@ -77,20 +77,24 @@
         filteredDescription = filteredDescription.replace(tag, "");
       });
 
-      let startDate =  item.start?.dateTime
-      ? getGermanDateString(item.start.dateTime)
-      : "";
+      let startDate = item.start?.dateTime
+        ? getGermanDateString(item.start.dateTime)
+        : "";
       let endDate = item.end?.dateTime
-      ? getGermanDateString(item.end.dateTime)
-      : "";
+        ? getGermanDateString(item.end.dateTime)
+        : "";
 
       return {
         summary: item.summary ?? "",
         description: filteredDescription ?? "",
         location: item.location ?? "",
         startDate,
-        startDateDay: item.start?.dateTime ? getGermanDateDayString(item.start.dateTime) : "",
-        endDateDay: item.end?.dateTime ? getGermanDateDayString(item.end.dateTime) : "",
+        startDateDay: item.start?.dateTime
+          ? getGermanDateDayString(item.start.dateTime)
+          : "",
+        endDateDay: item.end?.dateTime
+          ? getGermanDateDayString(item.end.dateTime)
+          : "",
         startTime: item.start?.dateTime
           ? getGermanTimeString(item.start.dateTime)
           : "",
@@ -183,10 +187,6 @@
       </div>
     `;
 
-    //tags
-    // #offeneWerkstatt
-    // #repaircafe
-
     try {
       calenderTemplate = document.getElementById("gcalendarTemplate").innerHTML;
     } catch (e) {
@@ -197,13 +197,12 @@
 
     $("#gcalendarList").html(template(transform(data)));
 
-    
-    jQuery("#gcalendarPrintButton").click(function(event) {
+    jQuery("#gcalendarPrintButton").click(function (event) {
       event.preventDefault();
       console.log("gcalender print");
       // jQuery(".visible-on-print").offset({ left: 0, top: 0 })
       window.print();
-    })
+    });
   }
 
   gCalendar.init = function () {
@@ -215,41 +214,38 @@
       getData("gcalendarListShort");
     }
   };
-
 })((window.gCalendar = window.gCalendar || {}), jQuery);
 
 jQuery(document).ready(function () {
-  Handlebars.registerHelper("include", function(arr, key) {
-    if(arr && Array.isArray(arr)) {
+  Handlebars.registerHelper("include", function (arr, key) {
+    if (arr && Array.isArray(arr)) {
       return arr.includes(key);
-    }        
+    }
     return false;
   });
 
-  Handlebars.registerHelper("filter", function(arr, key) {
-    if(arr && Array.isArray(arr)) {
-      return arr.filter(dataItem => dataItem?.tags.includes(key))
-    }        
+  Handlebars.registerHelper("filter", function (arr, key) {
+    if (arr && Array.isArray(arr)) {
+      return arr.filter((dataItem) => dataItem?.tags.includes(key));
+    }
 
     return arr;
   });
 
-  Handlebars.registerHelper("isOdd", function(num) {
+  Handlebars.registerHelper("isOdd", function (num) {
     return num % 2;
   });
 
-  Handlebars.registerHelper("isEven", function(num) {
+  Handlebars.registerHelper("isEven", function (num) {
     return !(num % 2);
   });
 
-  Handlebars.registerHelper("first", function(arr, num) {
+  Handlebars.registerHelper("first", function (arr, num) {
     return arr.slice(0, num);
   });
 
   gCalendar.init();
-
 });
-
 
 // created: "2022-03-17T11:43:50.000Z"
 // creator:

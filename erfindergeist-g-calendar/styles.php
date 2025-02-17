@@ -26,7 +26,7 @@ function erfindergeist_styles()
     'gcalender-style',
     plugins_url( '/', __FILE__ ) . 'gcalender.css',
     array('bootstrap'),
-    "1.0"
+    "1.4"
   );
 
   wp_enqueue_script(
@@ -42,8 +42,6 @@ function erfindergeist_styles()
     array('jquery', 'handlebars'),
     "1.4"
   );
-
-
 }
 
 add_action('wp_enqueue_scripts', 'erfindergeist_styles');
