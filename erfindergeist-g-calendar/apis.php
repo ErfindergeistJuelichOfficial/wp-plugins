@@ -32,7 +32,7 @@ function gcalendar($request)
   
   $gCalendarApiKey = get_option( $apikey_opt_name );
   $gCalendarId = get_option( $google_calendar_id_opt_name );
-  $url = 'https://www.googleapis.com/calendar/v3/calendars/'.$gCalendarId.'/events?maxResults=5&orderBy=startTime&singleEvents=true&timeMin=' . $currentDate . '&key='.$gCalendarApiKey;
+  $url = 'https://www.googleapis.com/calendar/v3/calendars/'.$gCalendarId.'/events?maxResults=20&orderBy=startTime&singleEvents=true&timeMin=' . $currentDate . '&key='.$gCalendarApiKey;
    
   $content = file_get_contents($url);
  
