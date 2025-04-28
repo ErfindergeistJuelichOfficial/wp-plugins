@@ -12,6 +12,9 @@
     return event.toLocaleDateString("de-DE", options);
   }
 
+  // expose
+  gCalendar.getGermanDateString = getGermanDateString;
+
   function getGermanDateDayString(date) {
     const event = new Date(date);
     const options = {
@@ -217,6 +220,8 @@
 })((window.gCalendar = window.gCalendar || {}), jQuery);
 
 jQuery(document).ready(function () {
+ 
+
   Handlebars.registerHelper("include", function (arr, key) {
     if (arr && Array.isArray(arr)) {
       return arr.includes(key);
@@ -245,7 +250,7 @@ jQuery(document).ready(function () {
   });
 
   Handlebars.registerHelper("today", function () {
-    return getGermanDateString(new Date())
+    return gCalendar.getGermanDateString(new Date())
   });
 
   gCalendar.init();
