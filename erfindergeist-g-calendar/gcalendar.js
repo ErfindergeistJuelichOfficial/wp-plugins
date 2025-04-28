@@ -244,6 +244,10 @@ jQuery(document).ready(function () {
     return arr.slice(0, num);
   });
 
+  Handlebars.registerHelper("today", function () {
+    return getGermanDateString(new Date())
+  });
+
   gCalendar.init();
 });
 
