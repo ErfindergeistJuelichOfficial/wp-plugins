@@ -1,17 +1,18 @@
 <?php
 
 /**
- * Plugin Name: Erfindergeist Google Calendar
- * Description: Google Calender WordPress Plugin for Erfindergeist Jülich e.V.
+ * Plugin Name: Erfindergeist Calendar
+ * Description: Calendar WordPress Plugin from Erfindergeist Jülich e.V.
  * Author: Lars 'vreezy' Eschweiler
- * Author URI: https://www.vreezy.de
- * Version: 1.2.0
+ * Author URI: https://www.erfindergeist.org
+ * Contributor: Erfindergeist Jülich e.V.
+ * Version: 2.0.0
  * Text Domain: erfindergeist
  * Domain Path: /languages
- * Tested up to: 6.5
+ * Tested up to: 6.8
  *
  *
- * @package Erfindergeist
+ * @package Erfindergeist-Calendar
  */
 
 // Exit if accessed directly.
@@ -37,6 +38,7 @@ function erfindergeist_plugin_options() {
 
 function g_calendar_settings_page() {
 
+
   //must check that the user has the required capability
   if (!current_user_can('manage_options'))
   {
@@ -44,8 +46,6 @@ function g_calendar_settings_page() {
   }
 
   // variables for the field and option names
-  $hidden_field_name = 'mt_submit_hidden';
-
   $apikey_opt_name = 'g_Calendar_apikey';
   $google_calendar_id_opt_name = 'g_Calendar_id';
 
@@ -58,7 +58,7 @@ function g_calendar_settings_page() {
 
   // See if the user has posted us some information
   // If they did, this hidden field will be set to 'Y'
-  if( isset($_POST[ $hidden_field_name ]) && $_POST[ $hidden_field_name ] == 'Y' ) {
+  if ( !empty($_POST) || wp_verify_nonce(egj_escape($_POST['egj_calendar_nonce_field']),'egj_calendar_action') ) {
     // Read their posted value
     $apikey_opt_val = $_POST[ $apikey_field_name ];
     $google_calendar_id_opt_val = $_POST[ $google_calendar_id_field_name ];
@@ -68,11 +68,12 @@ function g_calendar_settings_page() {
     update_option( $google_calendar_id_opt_name, $google_calendar_id_opt_val );
 
     // Put a "settings saved" message on the screen
-?>
-  <div class="updated"><p><strong><?php _e('settings saved.', 'menu-test' ); ?></strong></p></div>
-<?php
-
+    ?>
+      <div class="updated"><p><strong><?php _e('settings saved.', 'menu-test' ); ?></strong></p></div>
+    <?php
   }
+
+  
 
   // Now display the settings editing screen
 
@@ -80,14 +81,15 @@ function g_calendar_settings_page() {
 
   // header
 
-  echo "<h2>" . __( 'Erfindergeist Google Calendar Settings', 'menu-test' ) . "</h2>";
+  echo "<h2>" . __( 'Erfindergeist Calendar Settings', 'menu-test' ) . "</h2>";
 
   // settings form
 
 ?>
 
   <form name="form1" method="post" action="">
-  <input type="hidden" name="<?php echo $hidden_field_name; ?>" value="Y">
+
+  <?php wp_nonce_field('egj_calendar_action','egj_calendar_nonce_field'); ?>
 
   <p><?php _e("Apikey:", 'menu-test' ); ?>
   <input type="text" name="<?php echo $apikey_field_name; ?>" value="<?php echo $apikey_opt_val; ?>" size="40">
@@ -108,24 +110,26 @@ function g_calendar_settings_page() {
 <?php
 }
   /** Step 1. */
-  function my_plugin_menu() {
-    add_menu_page(
-      'Erfindergeist Options',
-      'Erfindergeist',
-      'manage_options',
-      'erfindergeist',
-      'erfindergeist_plugin_options'
-    );
+  function egj_calendar_menu() {
+    if ( empty ( $GLOBALS['admin_page_hooks']['erfindergeist'] ) ) {
+      add_menu_page(
+        'Erfindergeist',
+        'Erfindergeist',
+        'manage_options',
+        'erfindergeist',
+        'egj_calendar_plugin_options'
+      );
+    }
 
     add_submenu_page(
       'erfindergeist',
-      'Google Calendar',
-      'Google Calendar',
+      'Calendar',
+      'Calendar',
       'manage_options',
-      'erfindergeist-g-calendar-submenu-handle',
-      'g_calendar_settings_page'
+      'egj-calendar-submenu-handle',
+      'egj_calendar_settings_page'
     );
   }
 
   /** Step 2 (from text above). */
-  add_action( 'admin_menu', 'my_plugin_menu' );
+  add_action( 'admin_menu', 'egj_calendar_menu' );
